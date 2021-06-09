@@ -201,7 +201,22 @@ extension UnderwaterView {
             let mask = data.0.1
             let bc2 = data.0.2
 
-            let animations = OctopusAnimations(data.1.mapValues { $0.availableAnimations.first! })
+            let animations: OctopusAnimations
+            do {
+                animations = try OctopusAnimations(data.1.mapValues {
+                    if let animation = $0.availableAnimations.first {
+                        return animation
+                    } else {
+                        enum Error: Swift.Error {
+                            case missingAnimation
+                        }
+                        throw Error.missingAnimation
+                    }
+                })
+            } catch {
+                assertionFailure("\(error)")
+                return
+            }
 
             let octopusEntity = Entity()
             octopusModel.scale *= .init(repeating: 4.0)

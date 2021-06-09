@@ -26,7 +26,7 @@ class Settings: ObservableObject {
     @Published var timeScale: Float = 1.0
     /// Speed of the rotation of the model, independent of physics/movement.
     @Published var angularModelSpeed: Float = 1E+3
-    @Published var useAngularModelSpeed: Bool = true
+    @Published var useAngularModelSpeed: Bool = false
 
     @Published var postProcessing = PostProcessing.Options()
     @Published var character = Character.Options()
