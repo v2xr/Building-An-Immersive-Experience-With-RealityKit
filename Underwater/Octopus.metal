@@ -10,6 +10,10 @@ The Metal code for the custom surface shader of the octopus
 
 using namespace metal;
 
+/// Declare a custom sampler for this shader. RealityKit limits samplers to a combined total of 8 per render stage.
+/// That means that all custom surface shaders must use no more than 8 samplers total. RealityKit
+/// reserves 8 of the total 16 for its own use. If a sampler is used for multiple textures, it only counts as one
+/// sampler toward that limit.
 constexpr sampler samplerBilinear(coord::normalized,
                                  address::repeat,
                                  filter::linear,
