@@ -123,12 +123,12 @@ extension Entity {
 
         var transformWithZeroScale = transform
         transformWithZeroScale.scale = .zero
-
+        
         if let animation = try? AnimationResource.generate(with: FromToByAnimation<Transform>(
             from: transformWithZeroScale,
             to: transform,
             duration: 1.0,
-            targetPath: .transform
+            bindTarget: .transform
         )) {
             playAnimation(animation)
         }

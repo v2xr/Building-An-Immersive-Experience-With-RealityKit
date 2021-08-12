@@ -82,7 +82,7 @@ struct OctopusSystem: RealityKit.System {
         let scene = context.scene
         for octopus in scene.performQuery(OctopusComponent.query) {
             guard octopus.isEnabled else { continue }
-            guard var component = octopus.components[OctopusComponent] as? OctopusComponent else { continue }
+            guard var component = octopus.components[OctopusComponent.self] as? OctopusComponent else { continue }
             guard component.settings?.octopus.fearsCamera ?? false else { return }
             switch component.state {
             case .hiding:
